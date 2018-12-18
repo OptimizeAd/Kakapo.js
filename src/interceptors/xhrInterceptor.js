@@ -99,6 +99,15 @@ class FakeXMLHttpRequest {
     return this._responseHeaders[header];
   }
 
+  getAllResponseHeaders(): string {
+    return this._responseHeaders;
+  }
+  
+  abort(): void {
+    this._setReadyState(FakeXMLHttpRequest.UNSENT);
+    this._status = 0;
+  }
+
   send(data?: any): void {
     const { _method: method, _url: url } = this;
     const interceptors = FakeXMLHttpRequest.interceptors.filter(interceptor =>
