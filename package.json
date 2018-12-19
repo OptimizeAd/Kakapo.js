@@ -42,8 +42,8 @@
     "babel-preset-flow": "^6.23.0",
     "flow-bin": "^0.71.0",
     "jest": "^22.4.3",
-    "jquery": "^2.2.4",
-    "superagent": "^2.0.0",
+    "jquery": "^3.3.1",
+    "superagent": "^4.0.0",
     "webpack": "^4.8.1",
     "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.1.3"
