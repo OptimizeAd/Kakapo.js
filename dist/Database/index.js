@@ -11,6 +11,12 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _lodash = require("lodash");
 
+var _en_US = require("faker/locale/en_US");
+
+var faker = _interopRequireWildcard(_en_US);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
@@ -57,7 +63,7 @@ var Database = exports.Database = function () {
       var records = [];
 
       for (var index = 0; index < size; index++) {
-        var _data = dataFactory();
+        var _data = dataFactory(faker);
         var record = this.push(collectionName, _data);
         records.push(record);
       }

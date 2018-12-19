@@ -1,5 +1,6 @@
 // @flow
 import { type Predicate, sample, first, last, filter } from "lodash";
+import * as faker from 'faker/locale/en_US';
 
 const databaseCollectionStores: WeakMap<
   Database<any>,
@@ -61,7 +62,7 @@ export class Database<M: DatabaseSchema = Object> {
     const records = [];
 
     for (let index = 0; index < size; index++) {
-      const data = dataFactory();
+      const data = dataFactory(faker);
       const record = this.push(collectionName, data);
       records.push(record);
     }
