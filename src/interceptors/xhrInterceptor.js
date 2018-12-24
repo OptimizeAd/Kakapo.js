@@ -131,7 +131,7 @@ class FakeXMLHttpRequest {
           });
 
           if ( logging ) {
-            console.log(request);
+            console.log(url, request);
           }
 
           // Wrapping handler into a promise to add promise support for free
@@ -141,7 +141,7 @@ class FakeXMLHttpRequest {
             const response = KakapoResponse.wrap(result);
 
             if ( logging ) {
-              console.log(response);
+              console.log(url, response);
             }
 
             if (delay) {
