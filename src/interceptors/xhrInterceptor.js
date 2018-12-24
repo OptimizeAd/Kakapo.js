@@ -121,6 +121,7 @@ class FakeXMLHttpRequest {
         if (handler) {
           const db = interceptor.getDB();
           const delay = interceptor.getDelay();
+          const logging = interceptor.getLogging();
 
           const request = new KakapoRequest({
             params: interceptor.getParams(url, method),
@@ -128,11 +129,21 @@ class FakeXMLHttpRequest {
             body: data,
             headers: this._requestHeaders
           });
+
+          if ( logging ) {
+            console.log(request);
+          }
+
           // Wrapping handler into a promise to add promise support for free
           const responsePromise = Promise.resolve(handler(request, db));
 
           responsePromise.then(result => {
             const response = KakapoResponse.wrap(result);
+
+            if ( logging ) {
+              console.log(response);
+            }
+
             if (delay) {
               setTimeout(() => this._handleResponse(response), delay);
             } else {

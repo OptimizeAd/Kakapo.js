@@ -113,6 +113,7 @@ var FakeXMLHttpRequest = function () {
           if (handler) {
             var db = interceptor.getDB();
             var delay = interceptor.getDelay();
+            var logging = interceptor.getLogging();
 
             var request = new _Request.Request({
               params: interceptor.getParams(url, method),
@@ -120,11 +121,21 @@ var FakeXMLHttpRequest = function () {
               body: data,
               headers: _this._requestHeaders
             });
+
+            if (logging) {
+              console.log(request);
+            }
+
             // Wrapping handler into a promise to add promise support for free
             var responsePromise = Promise.resolve(handler(request, db));
 
             responsePromise.then(function (result) {
               var response = _Response.Response.wrap(result);
+
+              if (logging) {
+                console.log(response);
+              }
+
               if (delay) {
                 setTimeout(function () {
                   return _this._handleResponse(response);

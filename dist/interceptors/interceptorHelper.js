@@ -77,6 +77,9 @@ var interceptorHelper = exports.interceptorHelper = function interceptorHelper(c
     },
     getQuery: function getQuery(url) {
       return _queryString2.default.parse((0, _parseUrl2.default)(url).search);
+    },
+    getLogging: function getLogging() {
+      return config.logging;
     }
   };
 };

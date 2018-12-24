@@ -18,7 +18,8 @@ const interceptorDefaultConfig = {
   db: null,
   host: "",
   requestDelay: 0,
-  routes: { GET: {}, POST: {}, PUT: {}, DELETE: {}, HEAD: {} }
+  routes: { GET: {}, POST: {}, PUT: {}, DELETE: {}, HEAD: {} },
+  logging: false
 };
 
 export type RouterConfig = {

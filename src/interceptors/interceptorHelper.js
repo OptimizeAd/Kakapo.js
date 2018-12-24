@@ -17,7 +17,8 @@ export type InterceptorConfig = {
   +host: string,
   +routes: { [method: string]: { [path: string]: RouteHandler } },
   +db: any,
-  +requestDelay: number
+  +requestDelay: number,
+  +logging: boolean
 };
 
 export type UrlDetails = {
@@ -78,5 +79,8 @@ export const interceptorHelper = (config: InterceptorConfig): Interceptor => ({
   },
   getQuery(url) {
     return queryString.parse(parseUrl(url).search);
+  },
+  getLogging() {
+    return config.logging;
   }
 });

@@ -34,7 +34,8 @@ var interceptorDefaultConfig = {
   db: null,
   host: "",
   requestDelay: 0,
-  routes: { GET: {}, POST: {}, PUT: {}, DELETE: {}, HEAD: {} }
+  routes: { GET: {}, POST: {}, PUT: {}, DELETE: {}, HEAD: {} },
+  logging: false
 };
 
 var Router = exports.Router = function () {
