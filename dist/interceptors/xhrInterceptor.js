@@ -123,7 +123,7 @@ var FakeXMLHttpRequest = function () {
             });
 
             if (logging) {
-              console.log(url, request);
+              console.log(method + ' ' + url, request);
             }
 
             // Wrapping handler into a promise to add promise support for free
@@ -133,7 +133,7 @@ var FakeXMLHttpRequest = function () {
               var response = _Response.Response.wrap(result);
 
               if (logging) {
-                console.log(url, response);
+                console.log(method + ' ' + url, response);
               }
 
               if (delay) {
