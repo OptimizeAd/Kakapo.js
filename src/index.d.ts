@@ -34,6 +34,7 @@ export class Router<M extends DatabaseSchema = {}> {
   get(url: string, handler: RequestHandler<M>): void;
   post(url: string, handler: RequestHandler<M>): void;
   put(url: string, handler: RequestHandler<M>): void;
+  patch(url: string, handler: RequestHandler<M>): void;
   head(url: string, handler: RequestHandler<M>): void;
   register(method: string, path: string, handler: RequestHandler<M>): void;
 }

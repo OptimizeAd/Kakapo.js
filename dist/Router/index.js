@@ -34,7 +34,7 @@ var interceptorDefaultConfig = {
   db: null,
   host: "",
   requestDelay: 0,
-  routes: { GET: {}, POST: {}, PUT: {}, DELETE: {}, HEAD: {} },
+  routes: { GET: {}, POST: {}, PUT: {}, PATCH: {}, DELETE: {}, HEAD: {} },
   logging: false
 };
 
@@ -74,10 +74,19 @@ var Router = exports.Router = function () {
       this.register.apply(this, ["PUT"].concat(_toConsumableArray(args)));
     }
   }, {
-    key: "delete",
-    value: function _delete() {
+    key: "patch",
+    value: function patch() {
       for (var _len4 = arguments.length, args = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
         args[_key4] = arguments[_key4];
+      }
+
+      this.register.apply(this, ["PATCH"].concat(_toConsumableArray(args)));
+    }
+  }, {
+    key: "delete",
+    value: function _delete() {
+      for (var _len5 = arguments.length, args = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+        args[_key5] = arguments[_key5];
       }
 
       this.register.apply(this, ["DELETE"].concat(_toConsumableArray(args)));
@@ -85,8 +94,8 @@ var Router = exports.Router = function () {
   }, {
     key: "head",
     value: function head() {
-      for (var _len5 = arguments.length, args = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
-        args[_key5] = arguments[_key5];
+      for (var _len6 = arguments.length, args = Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
+        args[_key6] = arguments[_key6];
       }
 
       this.register.apply(this, ["HEAD"].concat(_toConsumableArray(args)));

@@ -18,7 +18,7 @@ const interceptorDefaultConfig = {
   db: null,
   host: "",
   requestDelay: 0,
-  routes: { GET: {}, POST: {}, PUT: {}, DELETE: {}, HEAD: {} },
+  routes: { GET: {}, POST: {}, PUT: {}, PATCH: {}, DELETE: {}, HEAD: {} },
   logging: false
 };
 
@@ -52,6 +52,10 @@ export class Router {
 
   put(...args: any[]) {
     this.register("PUT", ...args);
+  }
+
+  patch(...args: any[]) {
+    this.register("PATCH", ...args);
   }
 
   delete(...args: any[]) {
