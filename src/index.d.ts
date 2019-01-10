@@ -3,6 +3,7 @@ import { ListIterateeCustom } from "lodash";
 export type RouterOptions = {
   readonly host: string;
   readonly requestDelay: number;
+  readonly logging: boolean;
 };
 
 export type RequestHeaders = { [header: string]: string };
