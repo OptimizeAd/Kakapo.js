@@ -1,4 +1,5 @@
 import { ListIterateeCustom } from "lodash";
+import * as faker from 'faker';
 
 export type RouterOptions = {
   readonly host: string;
@@ -44,7 +45,9 @@ export class Server {
   use(entity: Router | Database<any>): void;
 }
 
-export type CollectionItemFactory<T extends Object> = () => T;
+export type CollectionItemFactory<T extends Object> = (
+  faker: Faker.FakerStatic
+) => T;
 
 export type DatabaseSchema = {
   [collectionName: string]: Object;
@@ -65,7 +68,7 @@ export class Database<M extends DatabaseSchema> {
     conditions: ListIterateeCustom<M[K], boolean>
   ): () => Record<M[K]>;
 
-  create<K extends keyof M>(collectionName: K, size: number): Record<M[K]>[];
+  create<K extends keyof M>(collectionName: K, size: number, factory?: CollectionItemFactory<M[K]>): Record<M[K]>[];
 
   delete<K extends keyof M>(
     collectionName: K,
