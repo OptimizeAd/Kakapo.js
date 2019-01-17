@@ -57,7 +57,7 @@ export type Record<T extends Object> = {
 };
 
 export class Database<M extends DatabaseSchema> {
-  all<K extends keyof M>(collectionName: K): Record<M[K]>;
+  all<K extends keyof M>(collectionName: K): Record<M[K]>[];
 
   belongsTo<K extends keyof M>(
     collectionName: K,
