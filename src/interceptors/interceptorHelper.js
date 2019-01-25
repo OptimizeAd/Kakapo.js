@@ -40,14 +40,18 @@ const getRoute = (
 };
 
 const extractUrl = (
-  { routes }: InterceptorConfig,
+  { routes, host }: InterceptorConfig,
   url: string,
   method: string
-) => ({
-  handlers: routes[method],
-  pathname: parseUrl(url).pathname,
-  fullpath: parseUrl(url).href
-});
+) => {
+  const hostLen = host.length
+  const isSameHost = url.substr(0, hostLen) === host
+  return {
+    handlers: routes[method],
+    pathname: isSameHost ? url.substr(hostLen) : parseUrl(url).pathname,
+    fullpath: parseUrl(url).href
+  }
+};
 
 export interface Interceptor {
   getDB(): any;
