@@ -44,10 +44,14 @@ var getRoute = function getRoute(_ref, _ref2) {
 };
 
 var extractUrl = function extractUrl(_ref3, url, method) {
-  var routes = _ref3.routes;
+  var routes = _ref3.routes,
+      host = _ref3.host;
+
+  var hostLen = host.length;
+  var isSameHost = url.substr(0, hostLen) === host;
   return {
     handlers: routes[method],
-    pathname: (0, _parseUrl2.default)(url).pathname,
+    pathname: isSameHost ? url.substr(hostLen) : (0, _parseUrl2.default)(url).pathname,
     fullpath: (0, _parseUrl2.default)(url).href
   };
 };
