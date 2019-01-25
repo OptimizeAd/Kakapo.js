@@ -258,6 +258,11 @@ class FakeXMLHttpRequest {
     };
 
     request.open(this._method, this._url);
+    Object
+      .keys(this._requestHeaders)
+      .forEach((key) => {
+        request.setRequestHeader(key, this._requestHeaders[key])
+      });
     request.send(data);
   }
 }
