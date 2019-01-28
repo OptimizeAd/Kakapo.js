@@ -249,9 +249,11 @@ class FakeXMLHttpRequest {
             [header]: value
           };
         }, {});
+      const contentType = headers['content-type'];
+      const responseBody = contentType && contentType.includes('application/json') ? JSON.parse(request.response) : request.response;
       const response = new KakapoResponse(
         request.status,
-        request.responseBody,
+        responseBody,
         headers
       );
       this._handleResponse(response);

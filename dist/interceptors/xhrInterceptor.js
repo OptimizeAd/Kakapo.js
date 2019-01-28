@@ -222,7 +222,9 @@ var FakeXMLHttpRequest = function () {
 
           return _extends({}, previous, _defineProperty({}, header, value));
         }, {});
-        var response = new _Response.Response(request.status, request.responseBody, headers);
+        var contentType = headers['content-type'];
+        var responseBody = contentType && contentType.includes('application/json') ? JSON.parse(request.response) : request.response;
+        var response = new _Response.Response(request.status, responseBody, headers);
         _this2._handleResponse(response);
       };
 
