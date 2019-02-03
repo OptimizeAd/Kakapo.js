@@ -188,6 +188,16 @@ class FakeXMLHttpRequest {
     });
   }
 
+  _handleNativeErrorResponse(errorEvent: ProgressEvent): void {
+    this._listeners["error"].forEach(listener => {
+      if (listener.handleEvent) {
+        listener.handleEvent(errorEvent);
+      } else {
+        listener(errorEvent);
+      }
+    });
+  }
+
   // abort(): void;
 
   // msCachingEnabled(): boolean;
@@ -257,6 +267,9 @@ class FakeXMLHttpRequest {
         headers
       );
       this._handleResponse(response);
+    };
+    request.onerror = (event: ProgressEvent) => {
+      this._handleNativeErrorResponse(event);
     };
 
     request.open(this._method, this._url);

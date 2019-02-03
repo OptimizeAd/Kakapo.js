@@ -186,6 +186,17 @@ var FakeXMLHttpRequest = function () {
         }
       });
     }
+  }, {
+    key: "_handleNativeErrorResponse",
+    value: function _handleNativeErrorResponse(errorEvent) {
+      this._listeners["error"].forEach(function (listener) {
+        if (listener.handleEvent) {
+          listener.handleEvent(errorEvent);
+        } else {
+          listener(errorEvent);
+        }
+      });
+    }
 
     // abort(): void;
 
@@ -226,6 +237,9 @@ var FakeXMLHttpRequest = function () {
         var responseBody = contentType && contentType.includes('application/json') ? JSON.parse(request.response) : request.response;
         var response = new _Response.Response(request.status, responseBody, headers);
         _this2._handleResponse(response);
+      };
+      request.onerror = function (event) {
+        _this2._handleNativeErrorResponse(event);
       };
 
       request.open(this._method, this._url);
