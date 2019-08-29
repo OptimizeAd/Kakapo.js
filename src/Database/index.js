@@ -114,7 +114,7 @@ export class Database<M: DatabaseSchema = Object> {
 
   last<K: $Keys<M>>(collectionName: K): Record<$ElementType<M, K>> {
     const { records } = this.getCollection(collectionName);
-    return last(records);
+    return last([...records].sort((l, r) => l.id - r.id));
   }
 
   push<K: $Keys<M>>(
